@@ -1,11 +1,11 @@
 #!/usr/bin/python3
-""" Module lolo polo """
+
+"""Module for my_list class"""
 
 
 class MyList(list):
-    """Class inh from list"""
+    """Class that inherits from list"""
 
     def print_sorted(self):
-        """Prints  list,  sorted (ascending )"""
-
+        """Prints the list, but sorted (ascending sort)"""
         print(sorted(list(self)))
