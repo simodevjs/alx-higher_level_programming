@@ -3,7 +3,6 @@
 
 from models.base import Base
 
-
 class Rectangle(Base):
     """represents a rectangle object"""
 
@@ -86,3 +85,63 @@ class Rectangle(Base):
         if value < 0:
             raise ValueError("y must be >= 0")
         self.__y = value
+
+    def area(self):
+        """this function returns the area of a rectangle"""
+        return self.width * self.height
+
+    def display(self):
+        """displays a rectangle"""
+
+        for lines in range(self.y):
+            print("")
+        for i in range(self.height):
+            for j in range(self.width + self.x):
+                if j < self.x:
+                    print(" ", end="")
+                else:
+                    print("#", end="")
+            print("")
+
+    def __str__(self):
+        """string representation of rectangle"""
+        r = "[{}] ({}) ".format(self.__class__.__name__, self.id)
+        c = "{}/{} - {}/{}".format(
+                self.x, self.y, self.width, self.height)
+        return r + c
+    
+    def update(self, *args, **kwargs):
+        """update method that assigns an arguement to each attribute"""
+        if args or len(args) != 0:
+            for i in range(len(args)):
+                if i == 0:
+                    if args[i] is None:
+                        self.__init__(
+                                self.width, self.height, self.x, self.y)
+                    else:
+                        self.id = args[i]
+                if i == 1:
+                    self.width = args[i]
+                if i == 2:
+                    self.height = args[i]
+                if i == 3:
+                    self.x = args[i]
+                if i == 4:
+                    self.y = args[i]
+        else:
+            if kwargs or len(kwargs) != 0:
+                for key, value in kwargs.items():
+                    if key == "id":
+                        if value is None:
+                            self.__init__(
+                                    self.width, self.height, self.x, self.y)
+                        else:
+                            self.id = value
+                    if key == "width":
+                        self.width = value
+                    if key == "height":
+                        self.height = value
+                    if key == "x":
+                        self.x = value
+                    if key == "y":
+                        self.y = value
